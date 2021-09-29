@@ -5,12 +5,20 @@
 </template>
 
 <script>
+import usePhotos from '@/modules/photos/composable/usePhotos.js';
+import { onMounted } from 'vue';
+
 export default {
     name: 'Home',
     components:{
 
     },
     setup(){
+    const { getPhotos } = usePhotos();
+    
+       
+     console.log(getPhotos())
+           
        
 
         return{
