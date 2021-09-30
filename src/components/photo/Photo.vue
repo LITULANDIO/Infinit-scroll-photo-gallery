@@ -5,18 +5,10 @@ export default {
     name: 'Photo',
     props:{
         photo:{
-            type: Object
-        }
-
-    },
-    setup(){
-
-
-        return{
-
+            type: Object,
+            required: true
         }
     }
-
 }
 </script>
 
