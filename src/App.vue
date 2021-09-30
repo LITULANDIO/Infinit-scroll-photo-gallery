@@ -16,11 +16,10 @@ export default {
     Navbar
   },
   setup(){
-    const { loadingPhotos } = usePhotos();
+    const { getPhotos } = usePhotos();
 
     onBeforeMount(async() =>{
-      await loadingPhotos();
-      console.log(await loadingPhotos())
+      await getPhotos();
     })
 
   }
@@ -28,5 +27,8 @@ export default {
 </script>
 
 <style lang="scss">
-
+body{
+  padding: 0px !important;
+  margin: 0px !important;
+}
 </style>

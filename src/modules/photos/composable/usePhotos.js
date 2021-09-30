@@ -3,7 +3,7 @@ import { useStore } from "vuex";
 const usePhotos = () =>{
     const store = useStore();
 
-    const loadingPhotos = async () =>{
+    const getPhotos = async () =>{
         let resp = [];
         try{
             resp = await store.dispatch('photos/getPhotos');
@@ -15,13 +15,18 @@ const usePhotos = () =>{
         return resp;
     } 
 
-    const getPhotos = () =>{
-        return store.getters['photos/getPhotos']
+    const limitScreenPhotos = async (num) =>{
+        let photos = [];
+        const resp = await getPhotos();
+         
+        photos = resp.slice(0,num)
+    
+        return photos;
     }
 
     return{
-        loadingPhotos,
-        getPhotos
+        getPhotos,
+        limitScreenPhotos
     }
 }
 
