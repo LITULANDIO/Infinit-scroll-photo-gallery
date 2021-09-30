@@ -7,6 +7,9 @@ export default {
         show:{
             type: Boolean,
             default: false
+        },
+        load:{
+            type: Number
         }
     },
     setup(){

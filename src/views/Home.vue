@@ -7,14 +7,14 @@
       <Photo :photo="photo" v-for="photo in photos" :key="photo.id" @onClicked="onDelete"/>
   </div>
 </div>
-      <Spinner :show="show"/>
+      <Spinner :show="show" :load="countPhotos"/>
 </template>
 
 <script>
 import usePhotos from '@/modules/photos/composable/usePhotos.js';
 import Photo from '@/components/photo/Photo.vue';
 import Spinner from '@/components/spinner/Spinner.vue';
-import { onMounted, onUnmounted, onBeforeUpdate, ref } from 'vue';
+import { onMounted, onUnmounted, onBeforeUpdate, ref, watchEffect } from 'vue';
 
 export default {
     name: 'Home',
@@ -26,6 +26,7 @@ export default {
     const { limitScreenPhotos, deletePhoto, photos } = usePhotos();
     let num = 66;
     const show = ref(false);
+    const countPhotos = ref(0)
        
     const loadPhotos = async() =>{
         photos.value = await limitScreenPhotos(num);
@@ -49,8 +50,12 @@ export default {
         if(show.value){
         setTimeout(() => show.value = false, 500)
         }
+        if(photos.value){
+            countPhotos.value = photos.value.length
+        }
     })
 
+  
     const handleScroll = (event) =>{
         if(document.body.scrollHeight - window.innerHeight === window.scrollY){
             show.value = true;
@@ -66,7 +71,8 @@ export default {
             photos,
             moreLoadPhotos,
             show,
-            onDelete
+            onDelete,
+            countPhotos
         }
     }
 
