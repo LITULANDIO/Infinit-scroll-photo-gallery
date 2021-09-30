@@ -1,5 +1,6 @@
 # Infinity scroll photo gallery
 
+See [ show project in Netlify](https://musing-bhaskara-44df7b.netlify.app/)
 ## Project setup
 ```
 npm install
