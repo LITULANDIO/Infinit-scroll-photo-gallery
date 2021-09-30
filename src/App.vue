@@ -1,10 +1,10 @@
 <template>
-  <Navbar name="Carles Far"/>
+  <Navbar :user="name"/>
   <Home />
 </template>
 
 <script>
-import { onBeforeMount } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 import Home from '@/views/Home.vue';
 import Navbar from '@/components/navbar/Navbar.vue';
 import usePhotos from '@/modules/photos/composable/usePhotos.js';
@@ -21,6 +21,10 @@ export default {
     onBeforeMount(async() =>{
       await getPhotos();
     })
+
+    return{
+      name: ref('Carles Far')
+    }
 
   }
 }

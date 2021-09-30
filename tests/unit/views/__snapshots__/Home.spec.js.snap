@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home component must match snapshot 1`] = `
+<transition-stub>
+  <!--v-if-->
+</transition-stub>
+<div class="pt-16">
+  <div class="flex justify-center items-center flex-wrap"></div>
+</div>
+<spinner-stub show="false"></spinner-stub>
+`;

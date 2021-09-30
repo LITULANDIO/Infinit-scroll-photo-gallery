@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Photo component must match snapshot 1`] = `<div class="cursor-pointer"><img alt="1"></div>`;

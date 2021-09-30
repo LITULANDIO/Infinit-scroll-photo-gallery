@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Spinner component must match snapshot 1`] = `
+<transition-stub>
+  <!--v-if-->
+</transition-stub>
+`;

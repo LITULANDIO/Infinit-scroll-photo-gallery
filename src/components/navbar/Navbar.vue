@@ -6,8 +6,9 @@ import { onMounted, ref } from 'vue';
 export default {
     name: 'Navbar',
     props:{
-        name:{
-            type: String
+        user:{
+            type: String,
+            default: ''
         }
     },
     setup(){

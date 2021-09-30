@@ -89,4 +89,5 @@ export default {
     transition: all 1s ease;
 }
 
+
 </style>
