@@ -38,6 +38,7 @@ export default {
         loadPhotos();
         window.addEventListener('scroll', handleScroll);
         window.addEventListener('touchend', handleScroll);
+
     });
     onUnmounted(() =>{
         window.removeEventListener('scorll', handleScroll);
@@ -51,7 +52,7 @@ export default {
     })
 
     const handleScroll = (event) =>{
-        if(document.body.height() - window.height() === window.scrollTop){
+        if(document.body.scrollHeight - window.innerHeight === window.scrollY){
             show.value = true;
             moreLoadPhotos()
         }
@@ -91,6 +92,5 @@ export default {
 .fade-leave-active{
     transition: all 1s ease;
 }
-
 
 </style>
