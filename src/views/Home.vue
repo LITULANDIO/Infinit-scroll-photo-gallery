@@ -37,9 +37,12 @@ export default {
     onMounted(() =>{
         loadPhotos();
         window.addEventListener('scroll', handleScroll);
+        window.addEventListener('touchend', handleScroll);
     });
     onUnmounted(() =>{
         window.removeEventListener('scorll', handleScroll);
+        window.addEventListener('touchend', handleScroll);
+
     })
     onBeforeUpdate(() =>{
         if(show.value){
@@ -48,7 +51,7 @@ export default {
     })
 
     const handleScroll = (event) =>{
-        if(document.body.scrollHeight - window.innerHeight === window.scrollY){
+        if(document.body.height() - window.height() === window.scrollTop){
             show.value = true;
             moreLoadPhotos()
         }
