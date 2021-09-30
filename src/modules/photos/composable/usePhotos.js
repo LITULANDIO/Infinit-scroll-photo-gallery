@@ -1,7 +1,9 @@
 import { useStore } from "vuex";
+import { ref } from 'vue';
 
 const usePhotos = () =>{
     const store = useStore();
+    const photos = ref();
 
     const getPhotos = async () =>{
         let resp = [];
@@ -14,19 +16,22 @@ const usePhotos = () =>{
         }
         return resp;
     } 
-
     const limitScreenPhotos = async (num) =>{
         let photos = [];
-        const resp = await getPhotos();
-         
-        photos = resp.slice(0,num)
-    
+        await getPhotos();
+        photos = store.getters['photos/getPhotos'].slice(0, num)
         return photos;
+    }
+    const deletePhoto = (photo) =>{
+        let index = photos.value.indexOf(photo);
+        index !== -1 && photos.value.splice(index, 1);
     }
 
     return{
         getPhotos,
-        limitScreenPhotos
+        limitScreenPhotos,
+        deletePhoto,
+        photos
     }
 }
 

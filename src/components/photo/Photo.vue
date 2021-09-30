@@ -8,6 +8,16 @@ export default {
             type: Object,
             required: true
         }
+    },
+    setup(props, {emit}){
+
+        const onClicked = () =>{
+            emit('onClicked', props.photo)
+        }
+
+        return{ 
+            onClicked
+        }
     }
 }
 </script>

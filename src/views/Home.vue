@@ -1,10 +1,10 @@
 <template>
 <transition name="fade">
-    <div v-if="show" class="w-full h-screen | mt-20 | fixed | bg-gray-800 opacity-30"></div>
+    <div v-if="show" class="w-full h-screen | mt-20 | fixed | bg-gray-600 opacity-100"></div>
 </transition>
 <div class="pt-16">
   <div class="flex justify-center items-center flex-wrap">
-      <Photo :photo="photo" v-for="photo in photos" :key="photo.id"/>
+      <Photo :photo="photo" v-for="photo in photos" :key="photo.id" @onClicked="onDelete"/>
   </div>
 </div>
       <Spinner :show="show"/>
@@ -23,8 +23,7 @@ export default {
         Spinner
     },
     setup(){
-    const { limitScreenPhotos } = usePhotos();
-    const photos = ref();
+    const { limitScreenPhotos, deletePhoto, photos } = usePhotos();
     let num = 66;
     const show = ref(false);
        
@@ -54,11 +53,16 @@ export default {
             moreLoadPhotos()
         }
     }
+    const onDelete = (photo) =>{
+        deletePhoto(photo);
+    }
+
 
         return{
             photos,
             moreLoadPhotos,
-            show
+            show,
+            onDelete
         }
     }
 
