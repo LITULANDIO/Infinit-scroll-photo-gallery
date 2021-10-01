@@ -1,7 +1,7 @@
 <template>
-<transition name="fade">
+<!-- <transition name="fade">
     <div v-if="show" class="w-full h-screen | mt-20 | fixed | bg-gray-600 opacity-100"></div>
-</transition>
+</transition> -->
 <div class="pt-16">
   <div class="flex justify-center items-center flex-wrap">
       <Photo :photo="photo" v-for="photo in photos" :key="photo.id" @onClicked="onDelete"/>
