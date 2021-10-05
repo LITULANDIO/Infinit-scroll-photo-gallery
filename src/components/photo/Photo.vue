@@ -10,13 +10,13 @@ export default {
         }
     },
     setup(props, {emit}){
-
         const onClicked = () =>{
             emit('onClicked', props.photo)
         }
 
+    
         return{ 
-            onClicked
+            onClicked,
         }
     }
 }

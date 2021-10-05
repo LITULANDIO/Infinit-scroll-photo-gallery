@@ -2,8 +2,8 @@
 <!-- <transition name="fade">
     <div v-if="show" class="w-full h-screen | mt-20 | fixed | bg-gray-600 opacity-100"></div>
 </transition> -->
-<div class="pt-20">
-  <div class="flex justify-center items-center flex-wrap">
+<div class="pt-28 h-screen">
+  <div class="flex justify-center items-center flex-wrap h-full">
       <Photo :photo="photo" v-for="photo in photos" :key="photo.id" @onClicked="onDelete"/>
   </div>
 </div>
@@ -14,7 +14,7 @@
 import usePhotos from '@/modules/photos/composable/usePhotos.js';
 import Photo from '@/components/photo/Photo.vue';
 import Spinner from '@/components/spinner/Spinner.vue';
-import { onMounted, onUnmounted, onBeforeUpdate, ref, watchEffect } from 'vue';
+import { onBeforeMount, onMounted, onBeforeUpdate, onUnmounted, ref } from 'vue';
 
 export default {
     name: 'Home',
@@ -24,16 +24,28 @@ export default {
     },
     setup(){
     const { limitScreenPhotos, deletePhoto, photos } = usePhotos();
-    let num = 66;
+    let numPhotos = 0;
+    let width = 0;
+    let height = 0;
     const show = ref(false);
-    const countPhotos = ref(0)
+    const countPhotos = ref(0);
        
     const loadPhotos = async() =>{
-        photos.value = await limitScreenPhotos(num);
+        photos.value = await limitScreenPhotos(numPhotos);
     }      
     const moreLoadPhotos = async() =>{
-         photos.value = await limitScreenPhotos(num+= 66);
+         photos.value = await limitScreenPhotos(numPhotos+= numPhotos);
     }
+
+    const reportWindow = () =>{
+        height = Math.floor(window.innerHeight / 150);
+        width = Math.floor(window.innerWidth / 150);
+        return numPhotos = height * width;
+    }
+
+    onBeforeMount(() =>{
+        reportWindow()
+    })
   
     onMounted(() =>{
         loadPhotos();
@@ -41,11 +53,7 @@ export default {
         window.addEventListener('touchend', handleScroll);
 
     });
-    onUnmounted(() =>{
-        window.removeEventListener('scorll', handleScroll);
-        window.addEventListener('touchend', handleScroll);
 
-    })
     onBeforeUpdate(() =>{
         if(show.value){
         setTimeout(() => show.value = false, 500)
@@ -53,7 +61,14 @@ export default {
         if(photos.value){
             countPhotos.value = photos.value.length
         }
-    })
+        window.addEventListener('resize', reportWindow)
+    });
+
+    onUnmounted(() =>{
+        window.removeEventListener('scorll', handleScroll);
+        window.addEventListener('touchend', handleScroll);
+
+    });
 
   
     const handleScroll = (event) =>{
@@ -97,6 +112,9 @@ export default {
 }
 .fade-leave-active{
     transition: all 1s ease;
+}
+.content{
+    height: calc(100vh - 100px)
 }
 
 </style>
