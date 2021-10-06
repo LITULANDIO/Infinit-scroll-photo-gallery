@@ -2,7 +2,7 @@
 <!-- <transition name="fade">
     <div v-if="show" class="w-full h-screen | mt-20 | fixed | bg-gray-600 opacity-100"></div>
 </transition> -->
-<div class="pt-28 h-screen">
+<div class="pt-32 h-screen">
   <div class="flex justify-center items-center flex-wrap h-full">
       <Photo :photo="photo" v-for="photo in photos" :key="photo.id" @onClicked="onDelete"/>
   </div>
@@ -61,7 +61,6 @@ export default {
         if(photos.value){
             countPhotos.value = photos.value.length
         }
-        window.addEventListener('resize', reportWindow)
     });
 
     onUnmounted(() =>{
