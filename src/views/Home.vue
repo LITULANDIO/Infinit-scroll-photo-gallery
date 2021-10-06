@@ -25,6 +25,7 @@ export default {
     setup(){
     const { limitScreenPhotos, deletePhoto, photos } = usePhotos();
     let numPhotos = 0;
+    let numFix = 0;
     let width = 0;
     let height = 0;
     const show = ref(false);
@@ -34,12 +35,13 @@ export default {
         photos.value = await limitScreenPhotos(numPhotos);
     }      
     const moreLoadPhotos = async() =>{
-         photos.value = await limitScreenPhotos(numPhotos+= numPhotos);
+         photos.value = await limitScreenPhotos(numPhotos+= numFix);
     }
 
     const reportWindow = () =>{
         height = Math.floor(window.innerHeight / 150);
         width = Math.floor(window.innerWidth / 150);
+        numFix = height * width;
         return numPhotos = height * width;
     }
 
